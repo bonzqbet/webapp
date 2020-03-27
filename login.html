@@ -7,17 +7,17 @@
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <form action="" method="POST">
+    <form action="checklogin.php" method="GET">
     <header>
         <div class="overlay">
             <h1>เข้าสู่ระบบ</h1>
-            username : <input type="text" id="username"><br>
-            password : <input type="password" id="password">
-            <h3><a href="add.html"></a></h3>
-            <br>
-            <input type="submit" value="sign in" id="log">
+            เลขประจำตัวประชาชน : <input type="text" id="username" name="ID"><br>
+            password : <input type="password" id="password" name="pass"><br>
+            <input type="submit" value="sign in" id="log"></form>
+            <form action="addRe.html" method="GET">
+                <input type="submit" value="sign up" id="log">
+            </form>
         </div>
     </header>
-    </form>
 </body>
 </html>
