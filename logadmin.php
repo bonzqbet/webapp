@@ -40,7 +40,7 @@ echo    "<title>จัดการข้อมูล!</title>";
 echo  "</head>";
 echo  "<body>";
 //echo "<div class='container'>";
-echo    "<h1>Show and management for admin</h1>";
+echo    "<h1>Show Logflie history</h1>";
 echo  "<h5>ยินดีต้อนรับ : $admin</h5>";
 echo "<div class='row'>";
 echo "<div class='col-sm'>";
@@ -61,8 +61,8 @@ echo "</div>";
 echo "<form action='logout.php' method='GET'>";
 echo       "<input type='submit' value='logout'>";
 echo    "</form>";
-echo "<form action='logadmin.php' method='GET'>";
-echo       "<input type='submit' value='logflie'>";
+echo "<form action='editadmin.php' method='GET'>";
+echo       "<input type='submit' value='จัดการข้อมูล'>";
 echo    "</form>";
 echo "</div>";
 echo "</div>";
@@ -91,9 +91,9 @@ echo "</form>";
 echo "</table>";
 
 
-$sql = "SELECT * FROM student INNER JOIN status ON student.STATUS_ID = status.status_id ";
+$sql = "SELECT * FROM loguser INNER JOIN status ON loguser.STATUS_ID = status.status_id ";
 if($type==""){
-    $sql .= "WHERE student.STATUS_ID ='1'";
+    $sql .= "WHERE loguser.STATUS_ID ='3'";
 }
 else if($type==1){
     $sql .= "WHERE Fname LIKE '%" . $txtSearch . "%'";
@@ -106,8 +106,7 @@ else if($type==4){
 }
 
 $result = mysqli_query($conn,$sql);
-
-
+$show = mysqli_num_rows($result);
 echo "<table class='table' >";
 echo "<thead class='thead-dark'>";
 echo "<tr>";
@@ -122,31 +121,26 @@ echo "<th scope='col'>เบอร์โทร</th>";
 echo "<th scope='col'>เลือกมหาวิทยาลัย</th>";
 echo "<th scope='col'>เลือกคณะ</th>";
 echo "<th scope='col'>สถานะ</th>";
-echo "<th scope='col'>แก้ไขสถานะ</th>";
-echo "<th scope='col'>Edit</th>";
-echo "<th scope='col'>Delete</th>";
 echo "<tbody>";
-
-if(mysqli_num_rows($result)>=0){
+if($show>=0){
+//if(mysqli_num_rows($result)>=0){
     while($row = mysqli_fetch_assoc($result)){
         echo "<form action='delete.php' method='get' >";
         echo "<tr>";
         echo "<th><input type='text' size='1' name='status_id' value=" .$row['STU_ID']. " readonly></th>"."<td>". $row["Fname"] 
         . " </td>"."<td>". $row["Lname"]. "</td>" . "<td>". $row["ID"]. " </td>" 
-        . "<td>". $row["Gender"]. " </td>" . "<td>". $row["FSchool"]. " </td>" 
+        . "<td>". $row["Gender"]. " </td>" . "<td>". $row["Fschool"]. " </td>" 
         . "<td>". $row["GPX"]. " </td>" . "<td>". $row["Tel"]. " </td>" 
-        . "<td>". $row["Univer"]. " </td>" . "<td>". $row["Faculty"]. " </td> " . "<td>". $row["SHOW_STATUS"]. "</td> " 
-        . "<td><select name='show_status'><option value='ผ่าน'>ผ่าน</option><option value='ไม่ผ่าน'>ไม่ผ่าน</option></select></td> " 
-        . "<td><input type='submit' name='send' value='Edit' onClick='return confirmUpdate()'></td>"
-        . "<td><input type='submit' name='send' value='Delete' onClick='return confirmDelete()'></td>"; //ต่อ string เพื่อให้แสดงค่าในแค่ละแถว
+        . "<td>". $row["Univer"]. " </td>" . "<td>". $row["Faculty"]. " </td> " . "<td>". $row["SHOW_STATUS"]. "</td> " ;
         echo "</tr>"; 
         echo "</form>";
+        
     }}
-
     
     echo "</tbody>";
     
 echo "</table>";
+
 echo    "<!-- Optional JavaScript -->";
 echo    "<!-- jQuery first, then Popper.js, then Bootstrap JS -->";
 echo    "<script src='https://code.jquery.com/jquery-3.4.1.slim.min.js' integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' crossorigin='anonymous'></script>";

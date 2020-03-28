@@ -81,6 +81,18 @@ while($row = mysqli_fetch_assoc($result)){
     echo "</tbody>";
     
 echo "</table>";
+$ID = $_SESSION['uid'];
+$check_data = "SELECT * FROM loguser WHERE ID ='$ID'";
+$query_data = mysqli_query($conn,$check_data);
+$check_result = mysqli_num_rows($query_data);
+if($check_result > 0){
+    echo "ข้อมูลของคุณสูญหายหรือเกิดปัญหา โปรดติดต่อเจ้าหน้าที่";
+    echo "<script>";
+    echo "alert('ข้อมูลของคุณสูญหายหรือเกิดปัญหา โปรดติดต่อเจ้าหน้าที่');";
+    //echo "window.location=''";
+    echo "</script>"; 
+}
+
 
 echo    "<!-- Optional JavaScript -->";
 echo    "<!-- jQuery first, then Popper.js, then Bootstrap JS -->";
@@ -91,7 +103,7 @@ echo  "</body>";
 echo "</html>";
 $_SESSION['test'] = "1";
 if($_SESSION['stu'] == "ไม่พบข้อมูลของผู้ใช้"){
-    echo    "<form action='tcasRe.php'>";
+    echo    "<br><br><form action='tcasRe.php'>";
     echo        "<input type='submit' value='ลงทะเบียน'>";
     echo    "</form>";
 }

@@ -1,3 +1,11 @@
+<script>
+function checkdata(){
+            if(Number(document.FORM.GPX.value) < 0){
+                alert('ห้ามกรอกค่าห้องติดลบ !');
+                document.FORM.GPX.focus();
+                return false;
+            }
+</script>
 <?php
 session_start();
 //check session
@@ -14,7 +22,7 @@ if(!isset($_SESSION['test'])) {
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <form action="add.php" method="GET">
+    <form action="add.php" name="FORM" onClick="return checkdata()" method="GET">
     <header>
         <div class="overlay">
             <h1>ลงทะเบียน</h1>
@@ -67,7 +75,7 @@ if(!isset($_SESSION['test'])) {
                 <option value="วิทยาลัยการจัดการ">วิทยาลัยการจัดการ</option>
             </select><br>
             <br>
-            <input type="submit" value="ยืนยัน" id="log">
+            <input type="submit" value="ยืนยัน" id="log" onClick='return checkdata()'>
         </div>
     </header>
     </form>

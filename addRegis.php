@@ -13,12 +13,12 @@ $email = $_REQUEST['email'];
 $_SESSION['test'] = "1";
 $_SESSION['identi'] = $ID_USER;
 
-$user_check = "SELECT * FROM user WHERE iden = '$iden' OR email = '$email'";
+$user_check = "SELECT * FROM user WHERE iden = '$iden' OR email = '$email' OR ID_USER = '$ID_USER'";
 $query = mysqli_query($conn, $user_check);
 $result = mysqli_num_rows($query);
 if($result > 0){
     echo "<script>";
-    echo "alert('Identification number or Email already exists');";
+    echo "alert('Identification number or Email or username already exists');";
     echo "window.history.back();";
     echo "</script>"; 
     }

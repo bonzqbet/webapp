@@ -37,7 +37,11 @@ if(mysqli_num_rows($result)==1){
         header("Location:edituser.php");
     }
     if($_SESSION['status']=="2"){
+        $res1 = mysqli_query($conn,"SELECT * FROM `loguser`");
+        $row1 = mysqli_fetch_assoc($res1);
+        $_SESSION['log'] = $row1['Log'];
         header("Location:editadmin.php");
+        //header("Location:logadmin.php");
     }
     //รับ session เพื่อ แสดงข้อมูลผู้ใช้งานคนนั้น
     $sqq = "SELECT * FROM student";

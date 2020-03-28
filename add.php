@@ -15,7 +15,6 @@ $status_id = "1";
 $show_status = "รอตรวจสอบ";
 $iden = $_SESSION['uid'];
 
-
 //2.select
 $sql = "INSERT INTO student (Fname, Lname, ID, Gender, Fschool, GPX, Tel, Univer, Faculty, STATUS_ID, SHOW_STATUS) VALUE";
 $sql .= "('". $Fname ."','". $Lname ."','". $iden ."','". $Gender ."','". $School ."','". $GPX ."','". $Tel ."','". $Univer ."','". $Major ."','". $status_id ."','". $show_status ."')";
