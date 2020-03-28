@@ -77,9 +77,10 @@ echo "<tr>";
 echo "<th>ค้นหา</th>";
 echo "<th><input type='text' name='txtSearch' size='14' value='$txtSearch'></th>";
 echo "<th><select name='Type'>";
-echo "<option value='1'  if($type == 1) echo 'selected'; >ชื่อ</option>";
-echo "<option value='2'  if($type == 2) echo 'selected'; >เลขประจำตัวประชาชน</option>";
-echo "<option value='3'  if($type == 3) echo 'selected'; >เบอร์โทร</option>";
+echo "<option value='1'  if($type == 1) echo 'selected'; >จากชื่อ</option>";
+echo "<option value='2'  if($type == 2) echo 'selected'; >จากเลขประจำตัวประชาชน</option>";
+echo "<option value='3'  if($type == 3) echo 'selected'; >จากเบอร์โทร</option>";
+echo "<option value='4'  if($type == 4) echo 'selected'; >จากมหาลัย</option>";
 echo "</th>";
 echo "<th>";
 echo "<input type='submit' name='send' value='Search'>";
@@ -99,7 +100,10 @@ else if($type==2){
     $sql .= "WHERE ID LIKE '%" . $txtSearch . "%'";
 }
 else if($type==3){
-    $sql .= "WHERE Tel LIKE '%" . $txtSearch . "%'";
+    $sql .= "WHERE Tel Faculty '%" . $txtSearch . "%'";
+}
+else if($type==4){
+    $sql .= "WHERE Univer LIKE '%" . $txtSearch . "%'";
 }
 
 $result = mysqli_query($conn,$sql);

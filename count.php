@@ -25,10 +25,6 @@ $row = mysqli_fetch_assoc($result);
 $countw = $row['countw'];
 $_SESSION['countw'] = $countw;
 
-echo $count;
-echo $countt;
-echo $countf;
-echo $countw;
 
  
     

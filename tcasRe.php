@@ -18,12 +18,11 @@ if(!isset($_SESSION['test'])) {
     <header>
         <div class="overlay">
             <h1>ลงทะเบียน</h1>
-            ชื่อ : <input type="text" name="Fname"> นามสกุล : <input type="text" name="Lname" id="aa" required><br>
-            เลขประจำตัวประชาชน : <input type="text" name="ID" id="aa" required><br>
-            เพศ : ชาย<input type="radio" name="gender" value="ชาย">หญิง<input type="radio" name="gender" value="หญิง" required><br>
+            ชื่อ : <input type="text" name="Fname" required> นามสกุล : <input type="text" name="Lname" id="aa" required><br>
+            เพศ : ชาย<input type="radio" name="gender" value="ชาย">หญิง<input type="radio" name="gender" value="หญิง"><br>
             จบจากสถานศึกษา : <input type="text" name="school" id="aa" required><br>
             GPX : <input type="text" name="GPX" id="aa" required><br>
-            เบอร์โทรศัพท์ : <input type="text" name="tel" id="aa" required><br>
+            เบอร์โทรศัพท์ : <input type="text" name="tel" id="aa" pattern="[0-9]{10,15}" title="กรอกเบอร์โทรไม่ถูกต้อง" required><br>
             เลือกศึกษาต่อ : <select name="univer" id="Uni">
                 <option value="มหาวิทยาลัยแม่โจ้">มหาวิทยาลัยแม่โจ้</option>
                 <option value="มหาวิทยาลัยนเรศวร">มหาวิทยาลัยนเรศวร</option>

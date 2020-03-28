@@ -1,6 +1,7 @@
 <?php
 session_start();
 require("consql.php");
+require("count.php");
 
 $id = $_REQUEST['ID'];
 $pass = $_REQUEST['pass'];
@@ -13,6 +14,7 @@ if(mysqli_num_rows($result)==1){
     $_SESSION['pass'] = $_REQUEST['pass'];
     $_SESSION['status'] = $row['STATUS_ID'];
     $_SESSION['iden'] = $row['iden'];
+    $uid = $row['iden'];
     $_SESSION['ID_USER'] = $row['ID_USER'];
     $iden = $_SESSION['iden'];
     if($_SESSION['status']=="1"){ //โชว์สถานะของผู้ใช้คนนั้น
@@ -22,6 +24,11 @@ if(mysqli_num_rows($result)==1){
         $_SESSION['fname'] = $row['Fname'];
         $_SESSION['lname'] = $row['Lname'];
         if($stu == null){
+            $check_iden = "SELECT * FROM user WHERE iden = '$uid'";
+            $check_query = mysqli_query($conn, $check_iden);
+            $row = mysqli_fetch_assoc($check_query);
+            $_SESSION['uid'] = $row['iden'];
+            echo $_SESSION['uid'];
             $_SESSION['stu'] = "ไม่พบข้อมูลของผู้ใช้";
         }
         if($stu != null){
@@ -30,7 +37,6 @@ if(mysqli_num_rows($result)==1){
         header("Location:edituser.php");
     }
     if($_SESSION['status']=="2"){
-        require("count.php");
         header("Location:editadmin.php");
     }
     //รับ session เพื่อ แสดงข้อมูลผู้ใช้งานคนนั้น

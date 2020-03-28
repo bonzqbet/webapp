@@ -9,10 +9,10 @@
         <div class="overlay">
         <h1>ลงทะเบียนใช้งานระบบ</h1>
         <form action="addRegis.php" method="GET">
-        เลขประจำตัวประชาชน :<input type="text" name="iden" id="aa" required><br>
-        username : <input type="text" name="id" id="aa" required><br>
-        รหัสผ่าน : <input type="password" name="pass1" id="aa" pattern="[A-Z]{1}[a-z]{1,20}" title="อักษรตัวพิมพ์ใหญ่หรือพิมพ์เล็กอย่างน้อย 1 ตัว" required><br>
-        ยืนยันรหัสผ่าน : <input type="password" name="pass2" id="aa" pattern="[A-Z]{1}[a-z]{1,20}" title="อักษรตัวพิมพ์ใหญ่หรือพิมพ์เล็กอย่างน้อย 1 ตัว" required><br>
+        เลขประจำตัวประชาชน :<input type="text" name="iden" id="aa" pattern="[0-9]{13}" title="เลขประตัว 13 หลัก" required><br>
+        username : <input type="text" name="id" id="aa" pattern="[a-z]{1,20}[0-9]{1,20}" title="ต้องมีอักษรตัวพิมพ์เล็กและตัวเลขอย่างน้อย 1 ตัว" required><br>
+        รหัสผ่าน : <input type="password" name="pass1" id="aa" pattern="[A-Z]{1,20}[a-z]{1,20}[0-9]{1,20}" title="ต้องมีอักษรตัวพิมพ์ใหญ่และตัวเลขอย่างน้อย 1 ตัว" required><br>
+        ยืนยันรหัสผ่าน : <input type="password" name="pass2" id="aa" pattern="[A-Z]{1,20}[a-z]{1,20}[0-9]{1,20}" title="ต้องมีอักษรตัวพิมพ์ใหญ่และตัวเลขอย่างน้อย 1 ตัว" required><br>
         email : <input type="email" name="email" id="aa" required><br>
         Tel : <input type="text" name="tel" id="aa" required><br>
         <input type="submit" name="regis" value="sign in" id="log">
