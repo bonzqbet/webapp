@@ -67,10 +67,10 @@ while($row = mysqli_fetch_assoc($result)){
         echo "<form action='update.php' method='get' >";
         echo "<tr>";
         echo "<th><input type='text' name='status_id' size='7' value=". $row["STU_ID"]. " readonly></th>"."<td><input type='text' name='Fname' size='7' value=". $row["Fname"] 
-        . " required></td>"."<td><input type='text' name='Lname' size='7' value=". $row["Lname"]. " required></td>" . "<td><input type='text' name='ID' size='10' value=". $row["ID"]. " required></td>" 
+        . " required></td>"."<td><input type='text' name='Lname' size='7' value=". $row["Lname"]. " required></td>" . "<td>". $row["ID"]. "</td>" 
         . "<td><input type='text' name='Gender' size='7' value=". $row["Gender"]. " required></td>" . "<td><input type='text' name='FSchool' size='9' value=". $row["FSchool"]. " required></td>" 
         . "<td><input type='text' name='GPX' size='7' value=". $row["GPX"]. " required></td>" . "<td><input type='text' name='Tel' size='15' value=". $row["Tel"]. " required></td>" 
-        . "<td><input type='text' name='Univer' size='15' value=". $row["Univer"]. " required></td>" . "<td><input type='text' name='Faculty' size='25' value=". $row["Faculty"]. " required></td>" 
+        . "<td>". $row["Univer"]. "</td>" . "<td>". $row["Faculty"]. "</td>" 
         . "<td><input type='submit' name='send' value='Edit' onClick='return confirmDelete()'></td>"; 
         echo "</tr>"; 
         echo "</form>";
@@ -102,11 +102,13 @@ echo    "<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/boot
 echo  "</body>";
 echo "</html>";
 $_SESSION['test'] = "1";
+//if($check_result == 0){
 if($_SESSION['stu'] == "ไม่พบข้อมูลของผู้ใช้"){
     echo    "<br><br><form action='tcasRe.php'>";
     echo        "<input type='submit' value='ลงทะเบียน'>";
     echo    "</form>";
 }
+//}
 ?>
 <html>
     <form action="logout.php" method="GET">

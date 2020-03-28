@@ -136,7 +136,8 @@ if(mysqli_num_rows($result)>=0){
         . "<td>". $row["Gender"]. " </td>" . "<td>". $row["FSchool"]. " </td>" 
         . "<td>". $row["GPX"]. " </td>" . "<td>". $row["Tel"]. " </td>" 
         . "<td>". $row["Univer"]. " </td>" . "<td>". $row["Faculty"]. " </td> " . "<td>". $row["SHOW_STATUS"]. "</td> " 
-        . "<td><select name='show_status'><option value='ผ่าน'>ผ่าน</option><option value='ไม่ผ่าน'>ไม่ผ่าน</option></select></td> " 
+        . "<td><select name='show_status'><option value='ผ่าน'>ผ่าน</option><option value='ไม่ผ่าน'>ไม่ผ่าน</option>"
+        . "<option value='รอตรวจสอบ'>รอตรวจสอบ</option></select></td> " 
         . "<td><input type='submit' name='send' value='Edit' onClick='return confirmUpdate()'></td>"
         . "<td><input type='submit' name='send' value='Delete' onClick='return confirmDelete()'></td>"; //ต่อ string เพื่อให้แสดงค่าในแค่ละแถว
         echo "</tr>"; 

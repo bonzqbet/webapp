@@ -15,7 +15,7 @@ $faculty = $_REQUEST['Faculty'];
 
 // update id table student
 $sql = "UPDATE student ";
-$sql .= "SET Fname='$fname', Lname='$lname', ID='$id', Gender='$gender', FSchool='$fschool', GPX='$gpx', Tel='$tel', Univer='$univer', Faculty='$faculty'";
+$sql .= "SET Fname='$fname', Lname='$lname', Gender='$gender', FSchool='$fschool', GPX='$gpx', Tel='$tel'";
 $sql .= "WHERE STU_ID = $status_id" ;
 //update iden table user
 $sqli = "UPDATE user ";

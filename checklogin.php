@@ -5,7 +5,7 @@ require("count.php");
 
 $id = $_REQUEST['ID'];
 $pass = $_REQUEST['pass'];
-
+$_SESSION['uid'] = "";
 $sql = "SELECT * FROM user WHERE ID_USER ='$id' AND PASS_S ='$pass'";
 $result = mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)==1){
