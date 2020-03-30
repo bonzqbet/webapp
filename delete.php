@@ -15,7 +15,7 @@ $L8 = $_SESSION['L8']; //$Tel;
 $L9 = $_SESSION['L9']; //$Univer;
 $L10 = $_SESSION['L10']; //$Faculty;
 $L11 = $_SESSION['L11']; //$SHOW_STATUS;
-$L12 = "3"; // Log
+$L12 = "2"; // Log
 //$sqli = "INSERT INTO loguser (STU_ID, Fname, Lname, ID, Gender, Fschool, GPX, Tel, Univer, Faculty, SHOW_STATUS, STATUS_ID) VALUE";
 //$sqli .= "('". $L1 ."','". $L2 ."','". $L3 ."','". $L4 ."','". $L5 ."','". $L6 ."','". $L7 ."','". $L8 ."','". $L9 ."','". $L10 ."','". $L11 ."','". $L12 ."')";
 if($send == 'Delete'){
@@ -28,7 +28,7 @@ if($send == 'Delete'){
     $s3 = $row['Lname'];
     $s4 = $row['ID'];
     $s5 = $row['Gender'];
-    $s6 = $row['FSchool'];
+    $s6 = $row['Fschool'];
     $s7 = $row['GPX'];
     $s8 = $row['Tel'];
     $s9 = $row['Univer'];

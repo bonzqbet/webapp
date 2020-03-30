@@ -48,7 +48,9 @@ if(mysqli_num_rows($result)==1){
     $sq = mysqli_query($conn,$sqq);
     if(mysqli_num_rows($sq)){
         $row = mysqli_fetch_assoc($sq);
+        $_SESSION['STU_ID'] = "";
         $_SESSION['STU_ID'] = $row['STU_ID'];
+        $s = $_SESSION['STU_ID'];   
     }
     mysqli_close($conn);
 }

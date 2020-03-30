@@ -5,7 +5,7 @@
 </script>
 <script>
     function confirmUpdate() {
-        return confirm("Are you sure to Update?");
+        return confirm("Are you sure to Restroe?");
     }
 </script>
 <?php
@@ -93,7 +93,7 @@ echo "</table>";
 
 $sql = "SELECT * FROM loguser INNER JOIN status ON loguser.STATUS_ID = status.status_id ";
 if($type==""){
-    $sql .= "WHERE loguser.STATUS_ID ='3'";
+    $sql .= "";
 }
 else if($type==1){
     $sql .= "WHERE Fname LIKE '%" . $txtSearch . "%'";
@@ -104,7 +104,33 @@ else if($type==2){
 else if($type==4){
     $sql .= "WHERE Univer LIKE '%" . $txtSearch . "%'";
 }
+//show data request
+//show data request
+$check_user = "SELECT * FROM request WHERE id !='1' ";  //WHERE status_1 = '1'
+$user_query = mysqli_query($conn,$check_user);
+$_SESSION['user'];
+echo "<table class='table' >";
+echo "<thead class='thead-dark'>";
+echo "<tr>";
+echo "<th scope='col'>เลขประจำตัวประชาชน</th>";
+echo "<th scope='col'></th>";
+echo "<th scope='col'>username</th>";
+echo "<th scope='col'>Description</th>";
+echo "<tbody>";
 
+if(mysqli_num_rows($user_query)>=0){
+    while($row = mysqli_fetch_assoc($user_query)){
+        echo "<form action='restore.php' method='get' >";
+        echo "<tr>";
+        echo "<th><input type='text' size='13' name='iduser' value=" .$row['iden']. " readonly></th>"."<td>"
+        . " </td>"."<td>". $row["username"]. "</td>" . "<td>มีการร้องขอ</td> ";
+        echo "</tr>"; 
+        echo "</form>";
+    }}
+echo "</tbody>";
+
+
+//show data loguser
 $result = mysqli_query($conn,$sql);
 $show = mysqli_num_rows($result);
 echo "<table class='table' >";
@@ -121,17 +147,19 @@ echo "<th scope='col'>เบอร์โทร</th>";
 echo "<th scope='col'>เลือกมหาวิทยาลัย</th>";
 echo "<th scope='col'>เลือกคณะ</th>";
 echo "<th scope='col'>สถานะ</th>";
+echo "<th scope='col'>กู้ข้อมูลกลับ</th>";
 echo "<tbody>";
 if($show>=0){
 //if(mysqli_num_rows($result)>=0){
     while($row = mysqli_fetch_assoc($result)){
-        echo "<form action='delete.php' method='get' >";
+        echo "<form action='restore.php' method='get' >";
         echo "<tr>";
         echo "<th><input type='text' size='1' name='status_id' value=" .$row['STU_ID']. " readonly></th>"."<td>". $row["Fname"] 
         . " </td>"."<td>". $row["Lname"]. "</td>" . "<td>". $row["ID"]. " </td>" 
         . "<td>". $row["Gender"]. " </td>" . "<td>". $row["Fschool"]. " </td>" 
         . "<td>". $row["GPX"]. " </td>" . "<td>". $row["Tel"]. " </td>" 
-        . "<td>". $row["Univer"]. " </td>" . "<td>". $row["Faculty"]. " </td> " . "<td>". $row["SHOW_STATUS"]. "</td> " ;
+        . "<td>". $row["Univer"]. " </td>" . "<td>". $row["Faculty"]. " </td> " . "<td>". $row["SHOW_STATUS"]. "</td> " 
+        . "<td><input type='submit' name='send' value='Restore' onClick='return confirmUpdate()'></td>";
         echo "</tr>"; 
         echo "</form>";
         

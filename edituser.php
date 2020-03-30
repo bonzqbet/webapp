@@ -9,7 +9,7 @@ session_start();
 if(!isset($_SESSION['user'])) {
     header("Location:login.html");
 }
-$stu_id = $_SESSION['STU_ID'];
+$stu_id = $_SESSION['STU_ID'];   //จะ error ก็ต่อเมื่อตาราง student ไม่มีข้อมูลจึงค้นหาตัวแปรที่จะมาใส่ใน session ไม่ได้
 $iden = $_SESSION['iden'];
 
 //start function
@@ -30,6 +30,9 @@ echo    "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstr
 $status = $_SESSION['stu'];
 $fname = $_SESSION['fname'];
 $lname = $_SESSION['lname'];
+if(!isset($_SESSION['fname'])){
+    $fname = "Unknow info";
+}
 echo    "<title>แก้ไขข้อมูลส่วนตัว!</title>";
 echo  "</head>";
 echo  "<body>";
@@ -68,7 +71,7 @@ while($row = mysqli_fetch_assoc($result)){
         echo "<tr>";
         echo "<th><input type='text' name='status_id' size='7' value=". $row["STU_ID"]. " readonly></th>"."<td><input type='text' name='Fname' size='7' value=". $row["Fname"] 
         . " required></td>"."<td><input type='text' name='Lname' size='7' value=". $row["Lname"]. " required></td>" . "<td>". $row["ID"]. "</td>" 
-        . "<td><input type='text' name='Gender' size='7' value=". $row["Gender"]. " required></td>" . "<td><input type='text' name='FSchool' size='9' value=". $row["FSchool"]. " required></td>" 
+        . "<td><input type='text' name='Gender' size='7' value=". $row["Gender"]. " required></td>" . "<td><input type='text' name='FSchool' size='9' value=". $row["Fschool"]. " required></td>" 
         . "<td><input type='text' name='GPX' size='7' value=". $row["GPX"]. " required></td>" . "<td><input type='text' name='Tel' size='15' value=". $row["Tel"]. " required></td>" 
         . "<td>". $row["Univer"]. "</td>" . "<td>". $row["Faculty"]. "</td>" 
         . "<td><input type='submit' name='send' value='Edit' onClick='return confirmDelete()'></td>"; 
@@ -82,16 +85,28 @@ while($row = mysqli_fetch_assoc($result)){
     
 echo "</table>";
 $ID = $_SESSION['uid'];
-$check_data = "SELECT * FROM loguser WHERE ID ='$ID'";
+//Check ว่ากดติดต่อขอกู้ข้อมูลหรือยัง
+$check_report = "SELECT * FROM request WHERE iden ='$ID'";
+$query_report = mysqli_query($conn,$check_report);
+$num_report = mysqli_num_rows($query_report);
+
+$check_data = "SELECT * FROM loguser WHERE ID ='$ID'"; //check  ว่ามีข้อมูลผู้ใช้คนนี้ไหม
 $query_data = mysqli_query($conn,$check_data);
 $check_result = mysqli_num_rows($query_data);
-if($check_result > 0){
-    echo "ข้อมูลของคุณสูญหายหรือเกิดปัญหา โปรดติดต่อเจ้าหน้าที่";
+if($check_result > 0){ //alert แจ้งเตือนว่าโดนลบข้อมูล
+    if($num_report != 0){
+    echo "คำร้องของท่านกำลังดำเนินการอยู่ ";
+    }
     echo "<script>";
     echo "alert('ข้อมูลของคุณสูญหายหรือเกิดปัญหา โปรดติดต่อเจ้าหน้าที่');";
+    echo "</script>";
+    if($num_report == 0){ //ถ้าตาราง restore ไม่มีข้อมูลขอกู้คืนของผู้ใช้คนนี้ก็จะแสดงปุ่มให้กดขอกู้ข้อมูล
     //echo "window.location=''";
-    echo "</script>"; 
-}
+    echo "ข้อมูลของคุณสูญหายหรือเกิดปัญหา โปรดติดต่อเจ้าหน้าที่ ";
+    echo    "<br><br><form action='restore.php'>";
+    echo        "<input type='submit' name='send' value='ติดต่อขอกู้ข้อมูลคืน'>";
+    echo    "</form>";    
+}}
 
 
 echo    "<!-- Optional JavaScript -->";
@@ -102,13 +117,13 @@ echo    "<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/boot
 echo  "</body>";
 echo "</html>";
 $_SESSION['test'] = "1";
-//if($check_result == 0){
+if($check_result == 0){
 if($_SESSION['stu'] == "ไม่พบข้อมูลของผู้ใช้"){
     echo    "<br><br><form action='tcasRe.php'>";
     echo        "<input type='submit' value='ลงทะเบียน'>";
     echo    "</form>";
 }
-//}
+}
 ?>
 <html>
     <form action="logout.php" method="GET">

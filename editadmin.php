@@ -104,10 +104,8 @@ else if($type==2){
 else if($type==4){
     $sql .= "WHERE Univer LIKE '%" . $txtSearch . "%'";
 }
-
+//show data log
 $result = mysqli_query($conn,$sql);
-
-
 echo "<table class='table' >";
 echo "<thead class='thead-dark'>";
 echo "<tr>";
@@ -133,7 +131,7 @@ if(mysqli_num_rows($result)>=0){
         echo "<tr>";
         echo "<th><input type='text' size='1' name='status_id' value=" .$row['STU_ID']. " readonly></th>"."<td>". $row["Fname"] 
         . " </td>"."<td>". $row["Lname"]. "</td>" . "<td>". $row["ID"]. " </td>" 
-        . "<td>". $row["Gender"]. " </td>" . "<td>". $row["FSchool"]. " </td>" 
+        . "<td>". $row["Gender"]. " </td>" . "<td>". $row["Fschool"]. " </td>" 
         . "<td>". $row["GPX"]. " </td>" . "<td>". $row["Tel"]. " </td>" 
         . "<td>". $row["Univer"]. " </td>" . "<td>". $row["Faculty"]. " </td> " . "<td>". $row["SHOW_STATUS"]. "</td> " 
         . "<td><select name='show_status'><option value='ผ่าน'>ผ่าน</option><option value='ไม่ผ่าน'>ไม่ผ่าน</option>"
